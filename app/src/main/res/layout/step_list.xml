@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cv_ingredients"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/label_ingredients"
+                android:layout_alignParentTop="true"
+                android:textSize="18sp"
+                android:text="@string/ingredients"
+                />
+
+            <Button
+                android:id="@+id/b_add_widget"
+                android:layout_width="wrap_content"
+                android:layout_height="33dp"
+                android:layout_alignEnd="@+id/lv_ingredients_list"
+                android:layout_centerVertical="true"
+                android:layout_alignParentTop="true"
+                android:text="TO WIDGET"
+                android:textSize="10sp" />
+
+            <tk.itarusoft.bakingapp.ListViewNoScroll
+                android:id="@+id/lv_ingredients_list"
+                android:layout_below="@id/b_add_widget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/step_list"
+        android:name="tk.itarusoft.bakingapp.StepListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="LinearLayoutManager"
+        tools:context=".StepListActivity"
+        tools:listitem="@layout/step_list_content" />
+
+</LinearLayout>
+</android.support.v4.widget.NestedScrollView >
