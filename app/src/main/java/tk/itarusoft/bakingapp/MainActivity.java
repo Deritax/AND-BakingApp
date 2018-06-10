@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
@@ -21,8 +21,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import tk.itarusoft.bakingapp.adapters.RecipeAdapter;
 import tk.itarusoft.bakingapp.objects.Recipe;
+import tk.itarusoft.bakingapp.utils.ApiService;
+import tk.itarusoft.bakingapp.utils.ItemClickListener;
+import tk.itarusoft.bakingapp.utils.RetroClient;
 
-public class MainActivity extends AppCompatActivity implements ItemClickListener{
+public class MainActivity extends AppCompatActivity implements ItemClickListener {
 
     Context context = this;
 
@@ -44,8 +47,17 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
 
         rvRecipes.setHasFixedSize(true);
 
-        LinearLayoutManager llmRecipes = new LinearLayoutManager(context);
-        rvRecipes.setLayoutManager(llmRecipes);
+        int numberOfColumns;
+
+        boolean tabletSize = getResources().getBoolean(R.bool.isTablet);
+        if (tabletSize) {
+            numberOfColumns = 3;
+        }else{
+            numberOfColumns = 1;
+        }
+
+        GridLayoutManager glmRecipes = new GridLayoutManager(context,numberOfColumns);
+        rvRecipes.setLayoutManager(glmRecipes);
 
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -53,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
             final ProgressDialog dialog;
 
             dialog = new ProgressDialog(MainActivity.this);
-            dialog.setTitle("Loading");
-            dialog.setMessage("Getting data from json");
+            dialog.setTitle(getString(R.string.loading));
+            dialog.setMessage(getString(R.string.get_data));
             dialog.show();
 
             ApiService api = RetroClient.getApiService();
@@ -76,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
                         raRecipe.setClickListener(MainActivity.this);
 
                     } else {
-                        Toast.makeText(context,"Error Load Data",
+                        Toast.makeText(context, R.string.error_data,
                                 Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -85,13 +97,13 @@ public class MainActivity extends AppCompatActivity implements ItemClickListener
                 public void onFailure(Call<List<Recipe>> call, Throwable t) {
                     dialog.dismiss();
 
-                    Toast.makeText(context,"Error Load Json",
+                    Toast.makeText(context, R.string.error_load,
                             Toast.LENGTH_SHORT).show();
                 }
             });
 
         } else {
-            Toast.makeText(context,"Error Connection",
+            Toast.makeText(context, R.string.error_connect,
                     Toast.LENGTH_SHORT).show();
         }
 

@@ -39,10 +39,10 @@
                 android:layout_alignEnd="@+id/lv_ingredients_list"
                 android:layout_centerVertical="true"
                 android:layout_alignParentTop="true"
-                android:text="TO WIDGET"
-                android:textSize="10sp" />
+                android:text="@string/to_widget"
+                android:textSize="@dimen/to_widget_size" />
 
-            <tk.itarusoft.bakingapp.ListViewNoScroll
+            <tk.itarusoft.bakingapp.utils.ListViewNoScroll
                 android:id="@+id/lv_ingredients_list"
                 android:layout_below="@id/b_add_widget"
                 android:layout_width="match_parent"

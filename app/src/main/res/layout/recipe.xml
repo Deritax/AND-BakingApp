@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/tv_servings"
                 android:layout_alignBottom="@+id/iv_recipe"
-                android:text="Servings : " />
+                android:text="@string/servings" />
 
         </RelativeLayout>
 

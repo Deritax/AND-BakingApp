@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="BakingWidget"
+        android:text="@string/bakingwidget"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
         android:textStyle="bold|italic" />
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Ingredients"
+        android:text="@string/ingredients_list"
         android:textColor="@color/colorPrimary"
         android:textSize="15sp"
         android:textStyle="bold|italic"

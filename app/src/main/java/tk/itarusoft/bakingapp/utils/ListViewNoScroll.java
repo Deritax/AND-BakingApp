@@ -1,4 +1,4 @@
-package tk.itarusoft.bakingapp;
+package tk.itarusoft.bakingapp.utils;
 
 import android.content.Context;
 import android.util.AttributeSet;

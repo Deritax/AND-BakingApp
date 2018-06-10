@@ -5,6 +5,19 @@
     <string name="previous">previous</string>
     <string name="next">next</string>
     <string name="ingredients">Ingredients:</string>
-    <string name="appwidget_text">EXAMPLE</string>
+    <string name="appwidget_text">BakingApp</string>
     <string name="add_widget">Add widget</string>
+    <string name="to_widget">TO WIDGET</string>
+    <string name="servings">Servings :</string>
+    <string name="bakingwidget">BakingWidget</string>
+    <string name="ingredients_list">Ingredients</string>
+    <string name="useApp">use the app!</string>
+    <string name="loading">Loading</string>
+    <string name="get_data">Getting data from json</string>
+    <string name="error_data">Error Load Data</string>
+    <string name="error_load">Error Load Json</string>
+    <string name="error_connect">Error Connection</string>
+    <string name="last_step">You already are in the Last step of the recipe</string>
+    <string name="first_step">You already are in the First step of the recipe</string>
+
 </resources>

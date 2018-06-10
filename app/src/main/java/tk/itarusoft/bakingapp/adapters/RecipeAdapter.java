@@ -13,7 +13,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import tk.itarusoft.bakingapp.ItemClickListener;
+import tk.itarusoft.bakingapp.utils.ItemClickListener;
 import tk.itarusoft.bakingapp.R;
 import tk.itarusoft.bakingapp.objects.Recipe;
 

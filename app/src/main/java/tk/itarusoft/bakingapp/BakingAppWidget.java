@@ -16,8 +16,8 @@ public class BakingAppWidget extends AppWidgetProvider {
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.baking_app_widget);
         if (widgetList == null){
-            widgetTitle = "BakingWidget!";
-            widgetList = "use the app!";
+            widgetTitle = context.getString(R.string.bakingwidget);
+            widgetList = context.getString(R.string.useApp);
         }
 
         views.setTextViewText(R.id.appwidget_title, widgetTitle);

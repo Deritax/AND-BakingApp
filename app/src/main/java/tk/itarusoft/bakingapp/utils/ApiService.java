@@ -1,4 +1,4 @@
-package tk.itarusoft.bakingapp;
+package tk.itarusoft.bakingapp.utils;
 
 import java.util.List;
 

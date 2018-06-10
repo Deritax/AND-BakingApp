@@ -1,9 +1,10 @@
-package tk.itarusoft.bakingapp;
+package tk.itarusoft.bakingapp.utils;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import tk.itarusoft.bakingapp.utils.ApiService;
 
 public class RetroClient {
 

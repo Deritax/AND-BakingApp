@@ -1,15 +1,11 @@
 package tk.itarusoft.bakingapp;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Handler;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,32 +53,7 @@ public class StepDetailFragment extends Fragment {
 
     public StepDetailFragment() {
     }
-/*
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_STEPS)) {
-
-            steps = getArguments().getParcelableArrayList(ARG_STEPS);
-            stepPosition = getArguments().getInt(ARG_POSITION);
-
-            Activity activity = this.getActivity();
-
-
-
-
-            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle("Step "+(steps.get(stepPosition).getId()));
-            }
-
-
-
-        }
-
-    }
-*/
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -97,8 +68,6 @@ public class StepDetailFragment extends Fragment {
             stepPosition = savedInstanceState.getInt(ARG_POSITION);
         }
         else {
-
-            //if (getArguments().containsKey(ARG_STEPS)) {
             steps = getArguments().getParcelableArrayList(ARG_STEPS);
             stepPosition = getArguments().getInt(ARG_POSITION);
 
@@ -107,7 +76,7 @@ public class StepDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.step_detail, container, false);
 
         simpleExoPlayerView = rootView.findViewById(R.id.playerView);
-        simpleExoPlayerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
+        simpleExoPlayerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIXED_WIDTH);
 
         String videoURL = steps.get(stepPosition).getVideoURL();
 
@@ -116,29 +85,25 @@ public class StepDetailFragment extends Fragment {
 
         if (!videoURL.isEmpty()) {
 
-
             initializePlayer(Uri.parse(steps.get(stepPosition).getVideoURL()));
 
-            if (rootView.findViewWithTag("sw600dp-land-recipe_step_detail")!=null) {
-                getActivity().findViewById(R.id.step_detail_container).setLayoutParams(new LinearLayout.LayoutParams(-1,-2));
-                simpleExoPlayerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIXED_WIDTH);
-
-            }
-            else if (getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-                ((TextView) rootView.findViewById(R.id.step_detail)).setVisibility(View.GONE);
+            if ((getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+                    && (StepListActivity.twoPanel == false)){
+                rootView.findViewById(R.id.step_detail).setVisibility(View.GONE);
+                rootView.findViewById(R.id.buttons_nextprev).setVisibility(View.GONE);
+                StepDetailActivity.toolbar.setVisibility(View.GONE);
+                getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_FULLSCREEN);
             }
 
 
         }
         else {
             player=null;
-            //simpleExoPlayerView.setForeground(ContextCompat.getDrawable(getContext(), R.drawable.ic_launcher_background));
-            //simpleExoPlayerView.setLayoutParams(new LinearLayout.LayoutParams(300, 300));
         }
 
 
-        Button prevStep = (Button) rootView.findViewById(R.id.prev_step);
-        Button nextStep = (Button) rootView.findViewById(R.id.next_step);
+        Button prevStep = rootView.findViewById(R.id.prev_step);
+        Button nextStep = rootView.findViewById(R.id.next_step);
 
         prevStep.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -151,7 +116,7 @@ public class StepDetailFragment extends Fragment {
                     ft.detach(StepDetailFragment.this).attach(StepDetailFragment.this).commit();
                 }
                 else {
-                    Toast.makeText(getActivity(),"You already are in the First step of the recipe", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.first_step, Toast.LENGTH_SHORT).show();
 
                 }
             }});
@@ -169,7 +134,7 @@ public class StepDetailFragment extends Fragment {
                     ft.detach(StepDetailFragment.this).attach(StepDetailFragment.this).commit();
                 }
                 else {
-                    Toast.makeText(getContext(),"You already are in the Last step of the recipe", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.last_step, Toast.LENGTH_SHORT).show();
 
                 }
             }});
@@ -199,7 +164,6 @@ public class StepDetailFragment extends Fragment {
         super.onSaveInstanceState(currentState);
         currentState.putParcelableArrayList(ARG_STEPS,steps);
         currentState.putInt(ARG_POSITION,stepPosition);
-        //currentState.putString("Title",recipeName);
     }
 
     @Override

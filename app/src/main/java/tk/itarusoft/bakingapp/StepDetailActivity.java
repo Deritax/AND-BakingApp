@@ -1,7 +1,10 @@
 package tk.itarusoft.bakingapp;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toolbar;
 
 import static tk.itarusoft.bakingapp.StepDetailFragment.ARG_POSITION;
 import static tk.itarusoft.bakingapp.StepDetailFragment.ARG_STEPS;
@@ -9,29 +12,15 @@ import static tk.itarusoft.bakingapp.StepDetailFragment.ARG_STEPS;
 
 public class StepDetailActivity extends AppCompatActivity {
 
+    static android.support.design.widget.AppBarLayout toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_detail);
-        /*
-        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        toolbar = findViewById(R.id.app_bar);
 
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
-        */
         if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
 
@@ -49,16 +38,4 @@ public class StepDetailActivity extends AppCompatActivity {
                     .commit();
         }
     }
-/*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-
-            NavUtils.navigateUpTo(this, new Intent(this, StepListActivity.class));
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    */
 }

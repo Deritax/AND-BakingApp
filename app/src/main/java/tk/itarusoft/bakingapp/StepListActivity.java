@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -19,11 +18,11 @@ import tk.itarusoft.bakingapp.adapters.IngredientAdapter;
 import tk.itarusoft.bakingapp.adapters.StepAdapter;
 import tk.itarusoft.bakingapp.objects.Ingredient;
 import tk.itarusoft.bakingapp.objects.Recipe;
+import tk.itarusoft.bakingapp.utils.ListViewNoScroll;
 
 public class StepListActivity extends AppCompatActivity {
 
-    private boolean twoPane;
-
+    public static boolean twoPanel;
     private Recipe recipe;
 
     @BindView(R.id.lv_ingredients_list)
@@ -46,7 +45,7 @@ public class StepListActivity extends AppCompatActivity {
         recipe = data.getParcelable("recipe");
 
         if (findViewById(R.id.step_detail_container) != null) {
-            twoPane = true;
+            twoPanel = true;
         }
 
         IngredientAdapter aIngredients = new IngredientAdapter(this, R.layout.ingredient, recipe.getIngredients());
@@ -83,6 +82,6 @@ public class StepListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new StepAdapter(this, recipe.getSteps(), twoPane));
+        recyclerView.setAdapter(new StepAdapter(this, recipe.getSteps(), twoPanel));
     }
 }
